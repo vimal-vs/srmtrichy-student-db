@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  reg_no String?
+  name String
+  branch String
+  year_of_study String
+  section String
+  batch String
+  type_of_participation String
+  createdAt DateTime @default(now())
+}
