@@ -4,13 +4,10 @@ import { NextApiRequest, NextApiResponse } from 'next';
 const prisma = new PrismaClient();
 
 export default async (req:NextApiRequest,res:NextApiResponse) => {
-    if(req.method !== 'POST'){
+    if(req.method !== 'GET'){
         return res.status(405);
     }
 
-    const contactData = JSON.parse(req.body);
-
-    await prisma.user.create({
-        data: contactData
-    })
+    const fetchedData = await prisma.user.findMany();
+    return fetchedData;
 }
