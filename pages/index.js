@@ -1,19 +1,6 @@
 import Head from 'next/head';
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
-
-export async function getServerSideProps() {
-  const data = await prisma.user.findMany();
-  console.log(data)
-  return {
-    props: {
-      data : JSON.parse(JSON.stringify(data))
-    }
-  }
-}
 
 async function saveData(data) {
   const response = await fetch('/api/contacts', {
@@ -42,7 +29,13 @@ export default function Home() {
     onSubmit: (values) => {
       console.log("form submitted");
       console.log(values);
-      saveData(values);
+      try{
+        saveData(values);
+      } catch{
+          
+      }
+      localStorage.setItem("user-data",JSON.stringify(values));
+      window.alert("Submitted Successfully.");
       router.push({ pathname: "/submitted", query: values });
     },
   });
@@ -92,7 +85,7 @@ export default function Home() {
                         <option value="default" disabled>Select</option>
                         <option>A</option>
                         <option>B</option>
-                        <option>N.A</option>
+                        <option>N/A</option>
                     </select>
                 </div>
                 <div className="flex justify-center mt-3">
