@@ -51,7 +51,7 @@ export default function Home() {
         <nav className={`py-2 px-2 flex flex-col items-center justify-center`}>
             <h1 className="py-2 px-2 text-2xl">Faculty of Engineering & Technology</h1>
             <h1 className="py-1 px-2 text-2xl ">Department of CSE & CSE_AIML</h1>
-            <h2 className="py-2 px-2 text-2xl underline">Database on Student's Achievements</h2>
+            <h2 className="py-2 px-2 text-2xl underline">Database on Student&apos;s Achievements</h2>
         </nav>
         <form onSubmit={formik.handleSubmit} method="post">
             <div className="py-6 flex flex-col justify-center bg-slate-300 m-auto xl:w-1/2 sm:w-3/4 rounded-xl">
